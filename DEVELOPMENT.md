@@ -48,7 +48,10 @@ python3 -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 
 # Install dependencies
-pip install -e ".[dev]"
+pip install -r requirements.txt
+
+# Install dev dependencies (optional)
+pip install pytest pytest-asyncio
 
 # Setup database
 # Option 1: Use Docker PostgreSQL
@@ -287,6 +290,22 @@ redis-cli ping  # Should return "PONG"
 - Verify backend WebSocket endpoint is accessible
 - Check NEXT_PUBLIC_WS_URL matches backend URL
 - Check browser doesn't have proxy/firewall blocking
+
+### Dependency Installation Issues
+If you encounter errors with `pip install -r requirements.txt`:
+```bash
+# Update pip
+pip install --upgrade pip
+
+# Clear pip cache
+pip cache purge
+
+# Install with verbose output
+pip install -r requirements.txt -v
+
+# Try installing individual packages
+pip install fastapi uvicorn sqlalchemy
+```
 
 ## Code Style
 
